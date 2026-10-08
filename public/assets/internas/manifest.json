@@ -1,0 +1,73 @@
+{
+  "pdf_total_pages": 29,
+  "flipbook": [
+    {
+      "src": "assets/internas/pagina-01.webp",
+      "alt": "Capa do Brasil Explicado",
+      "pdf_page": 1
+    },
+    {
+      "src": "assets/internas/pagina-03.webp",
+      "alt": "Introdução: entenda antes de acreditar",
+      "pdf_page": 3
+    },
+    {
+      "src": "assets/internas/pagina-04.webp",
+      "alt": "Como consultar: cinco passos de verificação",
+      "pdf_page": 4
+    },
+    {
+      "src": "assets/internas/pagina-07.webp",
+      "alt": "Decreto e medida provisória: poderes e limites",
+      "pdf_page": 7
+    },
+    {
+      "src": "assets/internas/pagina-09.webp",
+      "alt": "Câmara, Senado e como um projeto vira lei",
+      "pdf_page": 9
+    },
+    {
+      "src": "assets/internas/pagina-13.webp",
+      "alt": "Decisão individual e separação de poderes",
+      "pdf_page": 13
+    },
+    {
+      "src": "assets/internas/pagina-15.webp",
+      "alt": "Programas e regras de benefícios",
+      "pdf_page": 15
+    },
+    {
+      "src": "assets/internas/pagina-21.webp",
+      "alt": "Fala em vídeo e projeto apresentado",
+      "pdf_page": 21
+    },
+    {
+      "src": "assets/internas/pagina-23.webp",
+      "alt": "Checklist antes de compartilhar",
+      "pdf_page": 23
+    }
+  ],
+  "destaques": [
+    {
+      "src": "assets/internas/pagina-18.webp",
+      "alt": "Quem pode criar um imposto?",
+      "title": "Quem pode criar um imposto?",
+      "pdf_page": 18,
+      "hypothetical": false
+    },
+    {
+      "src": "assets/internas/pagina-24.webp",
+      "alt": "Disseram que o benefício vai acabar",
+      "title": "Disseram que o benefício vai acabar",
+      "pdf_page": 24,
+      "hypothetical": true
+    },
+    {
+      "src": "assets/internas/pagina-26.webp",
+      "alt": "Disseram que o STF proibiu isso",
+      "title": "Disseram que o STF proibiu isso",
+      "pdf_page": 26,
+      "hypothetical": true
+    }
+  ]
+}
