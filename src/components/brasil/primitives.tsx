@@ -36,11 +36,23 @@ export const asset = (name: string) => `/assets/${name}`;
 type CTAProps = {
   href?: string;
   children?: React.ReactNode;
+  /** Evento do Meta Pixel a disparar no clique (ex.: "InitiateCheckout"). */
+  fbEvent?: string;
 };
 
-export function CTA({ href = "#oferta", children = content.cta }: CTAProps) {
+export function CTA({ href = "#oferta", children = content.cta, fbEvent }: CTAProps) {
   return (
-    <a className="btn" href={href}>
+    <a
+      className="btn"
+      href={href}
+      onClick={() => {
+        if (fbEvent && typeof window !== "undefined") {
+          const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void })
+            .fbq;
+          if (typeof fbq === "function") fbq("track", fbEvent);
+        }
+      }}
+    >
       {children}
       <ArrowRight size={20} aria-hidden="true" />
     </a>

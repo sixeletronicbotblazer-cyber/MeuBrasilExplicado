@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@/app/globals.css";
 import "@/styles/brasil.css";
 import { Toaster } from "@/components/ui/toaster";
+import { MetaPixel } from "@/components/brasil/MetaPixel";
 
 export const metadata: Metadata = {
   title: "Brasil Explicado | Não caia em fake news",
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className="brasil-body">
+        <MetaPixel />
         {children}
         <Toaster />
       </body>

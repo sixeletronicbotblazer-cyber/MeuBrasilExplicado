@@ -21,6 +21,8 @@ import {
 } from "@/components/brasil/primitives";
 import { Flipbook } from "@/components/brasil/Flipbook";
 import { Destaques } from "@/components/brasil/Destaques";
+import { ScarcityTimer } from "@/components/brasil/ScarcityTimer";
+import { BuyerNotifications } from "@/components/brasil/BuyerNotifications";
 
 const poseByIndex = ["duvida", "ideia", "atencao", "joia"] as const;
 const topicPoses = ["explica", "conversa", "atencao", "acolhe", "duvida", "ideia"] as const;
@@ -263,6 +265,9 @@ export default function Home() {
           </section>
         )}
 
+        {/* CRONÔMETRO DE ESCASSEZ — acima da oferta */}
+        <ScarcityTimer />
+
         {/* OFFER */}
         <section className="section offer" id="oferta">
           <div className="container">
@@ -302,7 +307,12 @@ export default function Home() {
                   <p>Pagamento único</p>
                 </div>
                 {comercial.checkoutUrl ? (
-                  <CTA href={comercial.checkoutUrl}>{content.cta}</CTA>
+                  <CTA
+                    href={comercial.checkoutUrl}
+                    fbEvent="InitiateCheckout"
+                  >
+                    {content.cta}
+                  </CTA>
                 ) : (
                   <button
                     className="btn"
@@ -376,6 +386,9 @@ export default function Home() {
           )}
         </div>
       </footer>
+
+      {/* NOTIFICAÇÕES DE COMPRADORES (prova social, fixas no canto) */}
+      <BuyerNotifications />
     </>
   );
 }

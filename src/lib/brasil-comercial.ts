@@ -1,11 +1,12 @@
 // Condições comerciais. Preencher com dados reais antes de publicar.
 export const comercial = {
   price: 22.9,
-  // Preencher com o link real antes de publicar. Somente o CTA do plano usa esse URL.
-  checkoutUrl: "",
+  // Link de checkout real (Perfect Pay).
+  checkoutUrl: "https://go.perfectpay.com.br/PPU38CQGRGN",
   // Informe apenas condições confirmadas de entrega, garantia e dados do vendedor.
-  accessText: "",
-  guaranteeText: "",
+  accessText:
+    "Acesso imediato ao ebook digital após a confirmação do pagamento.",
+  guaranteeText: "Garantia incondicional de 7 dias para avaliação.",
   contactEmail: "",
   termsUrl: "",
   privacyUrl: "",
