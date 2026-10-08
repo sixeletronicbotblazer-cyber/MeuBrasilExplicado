@@ -146,7 +146,7 @@ export function ProductComposition({
         width={1536}
         height={1024}
         src={asset("mockup-acessos.webp")}
-        alt="Brasil Explicado apresentado em celular, tablet e livro. Produto digital em ebook."
+        alt="Brasil Explicado apresentado em celular, tablet e cartilha. Produto digital."
         loading={variant === "hero" ? "eager" : "lazy"}
         {...(variant === "hero" ? { fetchPriority: "high" as const } : {})}
       />

@@ -6,8 +6,14 @@ import {
   BookOpen,
   Check,
   FileCheck2,
+  Landmark,
   ListChecks,
+  Scale,
   Search,
+  ShieldCheck,
+  Users,
+  Wallet,
+  type LucideIcon,
 } from "lucide-react";
 import { content, money } from "@/lib/brasil-content";
 import { comercial } from "@/lib/brasil-comercial";
@@ -20,24 +26,14 @@ import {
   asset,
 } from "@/components/brasil/primitives";
 import { Flipbook } from "@/components/brasil/Flipbook";
-import { Destaques } from "@/components/brasil/Destaques";
-import { ScarcityTimer } from "@/components/brasil/ScarcityTimer";
-import { BuyerNotifications } from "@/components/brasil/BuyerNotifications";
+import { DestaqueCarousel } from "@/components/brasil/DestaqueCarousel";
+import { KitSection } from "@/components/brasil/KitSection";
 
-const poseByIndex = ["duvida", "ideia", "atencao", "joia"] as const;
 const topicPoses = ["explica", "conversa", "atencao", "acolhe", "duvida", "ideia"] as const;
-const audiencePoses = ["atencao", "conversa", "consulta"] as const;
 
 export default function Home() {
   const [purchaseUnavailable, setPurchaseUnavailable] = useState(false);
-  const offerItems = [
-    ...content.offer.items,
-    ...content.bonuses.map((b) => b.title),
-  ];
-  const valueItems = [
-    ...content.offer.stack,
-    ...content.bonuses.map((b) => [b.title, b.description] as [string, string]),
-  ];
+  const valueItems = content.offer.stack;
 
   return (
     <>
@@ -53,6 +49,7 @@ export default function Home() {
                 <BookOpen size={16} aria-hidden="true" />
                 {content.name}
               </p>
+              <p className="hero-support">{content.hero.support}</p>
               <h1>
                 {content.hero.before}
                 <em>{content.hero.emphasis}</em>
@@ -83,13 +80,13 @@ export default function Home() {
             </div>
             <div className="scope">
               <span>
-                <strong>6</strong> seções temáticas
+                <strong>6</strong> temas
               </span>
               <span>
-                <strong>24</strong> flashcards visuais
+                <strong>24</strong> flashcards
               </span>
               <span>
-                <strong>3</strong> exemplos práticos
+                <strong>3</strong> exemplos
               </span>
             </div>
           </div>
@@ -115,7 +112,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PRÉVIAS — flipbook + páginas soltas em destaque */}
+        {/* PRÉVIAS — flipbook + carrossel de páginas */}
         <section className="section preview" id="previas">
           <div className="container">
             <header className="section-title">
@@ -123,52 +120,44 @@ export default function Home() {
               <p>{content.flipbook.lead}</p>
             </header>
             <Flipbook />
-            <Destaques />
+            <DestaqueCarousel />
           </div>
         </section>
 
-        {/* MECHANISM */}
+        {/* MÉTODO — quatro linhas horizontais empilhadas */}
         <section className="section mechanism">
           <div className="container">
             <header className="section-title">
               <Heading pose="ideia">{content.mechanism.title}</Heading>
               <p>{content.mechanism.lead}</p>
             </header>
-            <div className="mechanism-grid">
+            <ol className="mechanism-rows">
               {content.mechanism.steps.map((s, i) => {
                 const Icon = icons[s.icon];
                 return (
-                  <article key={s.title}>
-                    <span className="step-number">0{i + 1}</span>
-                    <Icon size={26} aria-hidden="true" />
-                    <SubHeading pose={poseByIndex[i]}>{s.title}</SubHeading>
-                    <p>{s.text}</p>
-                  </article>
+                  <li className="mechanism-row" key={s.title}>
+                    <span className="mechanism-row__num" aria-hidden="true">
+                      0{i + 1}
+                    </span>
+                    <span className="mechanism-row__icon">
+                      <Icon size={22} aria-hidden="true" />
+                    </span>
+                    <div className="mechanism-row__body">
+                      <SubHeading pose={["duvida", "ideia", "atencao", "joia"][i] as string}>
+                        {s.title}
+                      </SubHeading>
+                      <p>{s.text}</p>
+                    </div>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
             <p className="mechanism-close">{content.mechanism.close}</p>
             <CTA />
           </div>
         </section>
 
-        {/* MID PITCH */}
-        <section className="section mid-pitch">
-          <div className="container pitch-grid">
-            <div className="pitch-art">
-              <ProductComposition variant="pitch" />
-            </div>
-            <div className="pitch-copy">
-              <Heading pose="conversa">{content.pitch.title}</Heading>
-              <p>{content.pitch.text}</p>
-              <blockquote>{content.pitch.question}</blockquote>
-              <p className="small-copy">{content.pitch.note}</p>
-              <CTA />
-            </div>
-          </div>
-        </section>
-
-        {/* AUDIENCE */}
+        {/* AUDIÊNCIA / GRUPO — imagem da família + frase curta */}
         <section className="section audience">
           <div className="container narrow">
             <header className="section-title">
@@ -185,13 +174,18 @@ export default function Home() {
                 loading="lazy"
                 alt="Grupo ilustrado de familiares e amigos brasileiros unidos: avô com criança nos ombros, professor, dois adolescentes, casal com bebê, avó e cachorrinho."
               />
+              <figcaption className="community-phrase">
+                {content.audience.phrase}
+              </figcaption>
             </figure>
             <div className="audience-list">
               {content.audience.items.map(([title, text], i) => (
                 <article key={title}>
                   <Check size={22} aria-hidden="true" />
                   <div>
-                    <SubHeading pose={audiencePoses[i]}>{title}</SubHeading>
+                    <SubHeading pose={["atencao", "conversa", "consulta"][i] as string}>
+                      {title}
+                    </SubHeading>
                     <p>{text}</p>
                   </div>
                 </article>
@@ -200,75 +194,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* RECEIVE */}
+        {/* TEMAS — seis linhas compactas (2 colunas desktop / 1 mobile) */}
         <section className="section receive">
           <div className="container">
             <header className="section-title">
               <Heading pose="explica">{content.receive.title}</Heading>
               <p>{content.receive.lead}</p>
             </header>
-            <div className="topic-list">
+            <div className="topic-rows">
               {content.topics.map((t, i) => {
-                const Icon = icons[t.icon];
+                const Icon = icons[t.icon] as LucideIcon;
                 return (
-                  <article key={t.title}>
-                    <div className="topic-icon">
-                      <Icon size={24} aria-hidden="true" />
-                    </div>
-                    <div>
+                  <article className="topic-row" key={t.title}>
+                    <span className="topic-row__icon">
+                      <Icon size={22} aria-hidden="true" />
+                    </span>
+                    <div className="topic-row__body">
                       <SubHeading pose={topicPoses[i]}>{t.title}</SubHeading>
                       <p>{t.text}</p>
                     </div>
-                    <span className="topic-count">4 flashcards</span>
                   </article>
                 );
               })}
             </div>
-            <div className="extras">
-              <div>
-                <ListChecks size={25} aria-hidden="true" />
-                <SubHeading pose="joia">Checklist de consulta</SubHeading>
-                <p>
-                  Perguntas para investigar uma alegação antes de acreditar ou
-                  compartilhar.
-                </p>
-              </div>
-              <div>
-                <FileCheck2 size={25} aria-hidden="true" />
-                <SubHeading pose="consulta">Três exemplos práticos</SubHeading>
-                <p>
-                  Aplique a consulta a mensagens sobre benefício, imposto e
-                  decisão do STF.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* BONUSES (vazio por padrão) */}
-        {content.bonuses.length > 0 && (
-          <section className="section bonuses">
-            <div className="container">
-              <Heading pose="acolhe">Mais recursos para sua consulta.</Heading>
-              <div className="bonus-grid">
-                {content.bonuses.map((b) => (
-                  <article key={b.title}>
-                    {b.image && (
-                      <img src={b.image} alt={`Capa de ${b.title}`} loading="lazy" />
-                    )}
-                    <SubHeading pose="ideia">{b.title}</SubHeading>
-                    <p>{b.description}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        {/* KIT — um bloco com tudo o que a pessoa recebe */}
+        <KitSection />
 
-        {/* CRONÔMETRO DE ESCASSEZ — acima da oferta */}
-        <ScarcityTimer />
-
-        {/* OFFER */}
+        {/* OFERTA */}
         <section className="section offer" id="oferta">
           <div className="container">
             <header className="section-title">
@@ -293,16 +248,8 @@ export default function Home() {
                 <ProductComposition variant="offer" />
                 <SubHeading pose="consulta">{content.name}</SubHeading>
                 <p className="plan-description">{content.subtitle}</p>
-                <ul>
-                  {offerItems.map((t) => (
-                    <li key={t}>
-                      <Check size={18} aria-hidden="true" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
                 <div className="price">
-                  <span>O ebook por</span>
+                  <span>{content.offer.priceLead}</span>
                   <strong>{money(comercial.price)}</strong>
                   <p>Pagamento único</p>
                 </div>
@@ -342,7 +289,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* FAQ — cinco perguntas */}
         <section className="section faq">
           <div className="container faq-grid">
             <header className="section-title">
@@ -386,9 +333,6 @@ export default function Home() {
           )}
         </div>
       </footer>
-
-      {/* NOTIFICAÇÕES DE COMPRADORES (prova social, fixas no canto) */}
-      <BuyerNotifications />
     </>
   );
 }

@@ -1,8 +1,9 @@
-// Fonte única da copy. Quantidades correspondem ao conteúdo fornecido no briefing.
-// As páginas reais da prévia vêm de public/assets/internas/ (pacote Brasil-Explicado-Flipbook).
+// Fonte única da copy. "Cartilha Brasil Explicado" é o produto principal.
+// Sem prometer imunidade a fake news, impossibilidade de mudanças, garantia
+// de benefícios ou atualização automática do conteúdo.
 
 export type FlipbookPage = {
-  src: string; // caminho relativo a /public
+  src: string;
   alt: string;
   pdf_page: number;
 };
@@ -15,17 +16,26 @@ export type Destaque = {
   hypothetical: boolean;
 };
 
+export type KitItem = {
+  title: string;
+  text: string;
+  image: string;
+  selo?: string;
+  caption?: string;
+};
+
 export const content = {
   name: "Brasil Explicado",
   subtitle:
-    "Quem decide, o que pode mudar e como conferir uma informação antes de acreditar.",
-  cta: "Quero meu Brasil Explicado",
+    "Cartilha + 2 bônus + aplicativo de consulta para entender quem decide e conferir antes de compartilhar.",
+  cta: "Quero meu kit Brasil Explicado",
   hero: {
     before: "Não caia em ",
     emphasis: "fake news",
     after: " sobre o governo e as mudanças no Brasil.",
     subtitle:
-      "Com 24 flashcards visuais e respostas curtas, entenda quem decide, confira o que realmente mudou e ajude quem está ao seu redor a checar mensagens antes de compartilhar.",
+      "Entenda quem decide, confira o que realmente mudou e ajude quem está ao seu redor. Aprenda com 24 flashcards visuais e consulte por assunto no aplicativo.",
+    support: "Cartilha + 2 bônus + aplicativo de consulta.",
     bullets: [
       "Identifique quem tem poder para fazer a mudança.",
       "Diferencie uma promessa de uma regra em vigor.",
@@ -41,14 +51,13 @@ export const content = {
       "O STF proibiu isso.",
     ],
     bridge:
-      "O Brasil Explicado parte dessas dúvidas para mostrar o que conferir: quem decide, qual documento existe e em que etapa a mudança está.",
+      "A cartilha parte dessas dúvidas para mostrar o que conferir: quem decide, qual documento existe e em que etapa a mudança está.",
   },
   flipbook: {
     title: "Veja como é por dentro.",
     lead: "Pergunta direta, explicação visual e orientação sobre onde conferir.",
     hint: "Clique ou deslize para ver algumas páginas reais da cartilha.",
     sample: "Amostra de 9 páginas da cartilha de 29 páginas.",
-    // Páginas reais, na ordem exigida pelo comando (manifest.json, lista "flipbook").
     pages: [
       { src: "/assets/internas/pagina-01.webp", alt: "Capa do Brasil Explicado", pdf_page: 1 },
       { src: "/assets/internas/pagina-03.webp", alt: "Introdução: entenda antes de acreditar", pdf_page: 3 },
@@ -63,7 +72,6 @@ export const content = {
   },
   destaques: {
     title: "Veja o método em situações do dia a dia",
-    // manifest.json, lista "destaques".
     items: [
       {
         src: "/assets/internas/pagina-18.webp",
@@ -90,69 +98,85 @@ export const content = {
   },
   mechanism: {
     title: "Uma dúvida. Um flashcard. Um caminho para conferir.",
-    lead: "Cada flashcard reúne pergunta, resposta, exemplo e o detalhe que pode mudar a interpretação.",
+    lead: "Quatro passos curtos para sair do susto e chegar à fonte.",
     steps: [
-      { icon: "BookOpen", title: "Encontre a sua dúvida", text: "Consulte o assunto que apareceu na mensagem ou na notícia." },
-      { icon: "Landmark", title: "Veja quem decide", text: "Entenda quais instituições têm competência para agir naquele caso." },
-      { icon: "ShieldCheck", title: "Observe os limites", text: "Leia as condições e exceções antes de tirar uma conclusão." },
-      { icon: "Search", title: "Confira na origem", text: "Use a referência indicada para procurar o documento e sua situação atual." },
+      { icon: "Search", title: "Reconheça a dúvida", text: "Encontre a pergunta que apareceu na mensagem." },
+      { icon: "BookOpen", title: "Leia a resposta", text: "Entenda o ponto principal e suas condições." },
+      { icon: "Landmark", title: "Identifique quem decide", text: "Veja quais instituições participam." },
+      { icon: "FileCheck2", title: "Confira a fonte", text: "Verifique documento, contexto, data e situação atual." },
     ],
-    close: "O objetivo é compreender a informação e saber o que verificar antes de passar adiante.",
-  },
-  pitch: {
-    title: "Você também pode ajudar a conversa no grupo a sair do boato.",
-    text: "Quando uma mensagem assusta alguém da família, você pode ajudar a procurar a fonte e entender o que ela realmente diz.",
-    question: "Quem tem poder para fazer essa mudança e qual caminho precisa seguir?",
-    note: "Depender do Congresso não torna uma mudança impossível. O guia explica os poderes, os limites e os procedimentos.",
+    close: "O objetivo é compreender a informação antes de passar adiante.",
   },
   audience: {
     title: "Para quem quer entender antes de acreditar.",
+    phrase: "Mais clareza para as conversas em família, na escola e entre amigos.",
     items: [
-      ["Recebe mensagens sobre o governo", "Aprenda o que observar em vídeos, prints e alegações que circulam nas redes."],
-      ["Quer ajudar familiares e amigos", "Use perguntas objetivas para orientar uma checagem sem depender apenas de opiniões."],
-      ["Tem dúvidas sobre as instituições", "Conheça as funções da Presidência, do Congresso e do STF a partir de situações reconhecíveis."],
+      ["Recebe mensagens sobre o governo", "Aprenda a observar vídeos, prints e alegações que circulam nas redes."],
+      ["Quer ajudar familiares e amigos", "Use perguntas objetivas para orientar uma checagem sem depender de opiniões."],
+      ["Tem dúvidas sobre as instituições", "Conheça as funções da Presidência, do Congresso e do STF em situações reconhecíveis."],
     ],
   },
   receive: {
     title: "Do poder de cada instituição à mudança que afeta o seu dia.",
-    lead: "Seis seções para consultar por assunto. Cada uma reúne quatro flashcards.",
+    lead: "Seis temas para consultar por assunto. Cada um reúne quatro flashcards.",
   },
   topics: [
-    { icon: "Landmark", title: "Presidência: poder e limites", text: "O que pode decidir, o que depende do Congresso, decretos e medidas provisórias." },
-    { icon: "Users", title: "Congresso: onde as propostas viram leis", text: "Câmara e Senado, projetos, votação, veto e mudanças na Constituição." },
-    { icon: "Scale", title: "STF: o que a Justiça pode decidir", text: "Controle de leis, decisões individuais, liminares e julgamentos do colegiado." },
-    { icon: "ShieldCheck", title: "Benefícios e serviços públicos", text: "Mudanças de regras e responsabilidades na saúde, na educação e na segurança." },
-    { icon: "Wallet", title: "Impostos e orçamento", text: "Quem pode cobrar, quando uma mudança vale e como acompanhar o uso do dinheiro." },
-    { icon: "FileCheck2", title: "Da declaração à mudança real", text: "Fala, promessa, proposta, norma publicada e regra em vigor. Data, contexto e origem." },
+    { icon: "Landmark", title: "Presidência", text: "O que decide diretamente e o que depende de outras instituições." },
+    { icon: "Users", title: "Congresso", text: "Como propostas são analisadas e podem virar leis." },
+    { icon: "Scale", title: "STF", text: "O alcance de decisões individuais e de julgamentos colegiados." },
+    { icon: "ShieldCheck", title: "Benefícios e serviços", text: "Como conferir regras, mudanças e responsabilidades." },
+    { icon: "Wallet", title: "Impostos e orçamento", text: "Quem pode mudar cobranças e como acompanhar gastos." },
+    { icon: "FileCheck2", title: "Da fala à mudança real", text: "Diferencie declaração, proposta, norma e regra em vigor." },
   ],
-  // Bônus futuros só entram quando tiverem nome e conteúdo definidos.
-  bonuses: [] as { title: string; description: string; image?: string }[],
-  offer: {
-    title: "Um ebook. A consulta inteira. Uma única oferta.",
-    lead: "Os recursos abaixo fazem parte do Brasil Explicado e estão incluídos no mesmo preço.",
-    stack: [
-      ["Entenda quem decide", "Seis seções sobre poderes, benefícios, impostos e mudanças nas regras."],
-      ["Consulte a dúvida que apareceu", "24 flashcards com resposta, exemplo, atenção ao detalhe e onde conferir."],
-      ["Investigue antes de compartilhar", "Checklist para organizar as perguntas que uma alegação exige."],
-      ["Veja como aplicar a consulta", "Três exemplos práticos e referências para buscar as fontes oficiais."],
-    ] as [string, string][],
+  kit: {
+    title: "Aprenda na cartilha. Confira com os bônus. Consulte no app.",
+    lead: "Um kit para entender uma mensagem antes de acreditar ou compartilhar.",
     items: [
-      "As seis seções do Brasil Explicado",
-      "24 flashcards para consultar por dúvida",
-      "Checklist para investigar uma alegação",
-      "Três exemplos práticos de checagem",
-      "Fontes e orientação para conferir a situação atual",
-    ],
+      {
+        title: "Cartilha Brasil Explicado",
+        text: "24 flashcards em 6 temas, checklist de consulta, exemplos práticos e referências para conferir as informações.",
+        image: "mockup-acessos.webp",
+      },
+      {
+        title: "Bônus 1 — Quem Decide? Mapa Rápido dos Poderes",
+        text: "Um mapa visual de 2–3 páginas com as atribuições do presidente, Congresso, STF, governadores e prefeitos. Consulte quando surgir a dúvida: “Quem pode fazer isso?”.",
+        image: "bonus-1-quem-decide.webp",
+        selo: "Bônus incluído",
+      },
+      {
+        title: "Bônus 2 — Confira Antes de Compartilhar",
+        text: "Checklist de verificação, atalhos para fontes oficiais e perguntas para pedir a origem de uma informação. Exemplo: “Você tem o documento completo e a data dessa mudança?”.",
+        image: "bonus-2-confira.webp",
+        selo: "Bônus incluído",
+      },
+      {
+        title: "App — Brasil Explicado",
+        text: "Os 24 cards organizados por assunto, com busca, favoritos e acesso às fontes. Aprenda pela cartilha e consulte pelo aplicativo.",
+        image: "app-brasil-explicado.webp",
+        selo: "Incluído no kit",
+        caption: "Representação ilustrativa do aplicativo",
+      },
+    ] as KitItem[],
+  },
+  offer: {
+    title: "O kit completo. Uma única oferta.",
+    lead: "Tudo abaixo está incluído no mesmo preço único.",
+    stack: [
+      ["Para aprender", "Cartilha Brasil Explicado."],
+      ["Para identificar quem decide", "Mapa Rápido dos Poderes."],
+      ["Para verificar antes de compartilhar", "kit de checagem."],
+      ["Para consultar por assunto", "aplicativo Brasil Explicado."],
+    ] as [string, string][],
+    // Sem lista de itens repetida: o kit já mostra os entregáveis.
+    priceLead: "Tudo incluído por",
   },
   faqTitle: "Antes de escolher, tire suas dúvidas.",
   faq: [
-    ["Preciso entender de política ou de Direito?", "O material começa pelas dúvidas do dia a dia. As respostas são curtas, acompanhadas de exemplos e dos detalhes necessários para interpretar cada caso."],
-    ["É um ebook ou um curso?", "É um ebook de consulta, organizado em seis seções e 24 flashcards. Também inclui checklist, três exemplos práticos e referências de consulta."],
-    ["O guia defende algum governo ou partido?", "A proposta é explicar competências, limites e procedimentos. A checagem parte da fonte e da situação do documento, independentemente de quem fez a declaração."],
-    ["Ele diz que um benefício nunca pode acabar?", "Não. É necessário conferir a lei do programa, o instrumento usado e as competências envolvidas. Depender do Congresso não significa que uma mudança seja impossível."],
-    ["O ebook substitui a consulta à fonte atual?", "Não. Leis, programas e decisões podem mudar. O material ensina o caminho da consulta; confira a fonte original e sua situação atual antes de concluir."],
-    ["São vários planos ou uma assinatura?", "A oferta é única: Brasil Explicado por R$22,90, em pagamento único. Não há outros planos nesta página."],
-    ["O aplicativo e a comunidade estão incluídos?", "A oferta apresentada aqui é o ebook. Aplicativo e comunidade são possibilidades futuras e não são apresentados como recursos disponíveis nesta compra."],
+    ["Preciso entender de política ou Direito?", "Não. A cartilha usa perguntas reconhecíveis, respostas curtas e exemplos para orientar sua consulta."],
+    ["O que está incluído nos R$ 22,90?", "A Cartilha Brasil Explicado, o Mapa Rápido dos Poderes, o kit Confira Antes de Compartilhar e o aplicativo com 24 cards por assunto. É uma única oferta, sem assinatura."],
+    ["O material defende um governo ou partido?", "O foco é explicar competências, limites e procedimentos e indicar onde conferir uma informação."],
+    ["Isso significa que uma mudança ou o fim de um benefício é impossível?", "Não. Depender do Congresso não torna uma mudança impossível. É preciso conferir a regra do programa, quem pode alterá-la, o instrumento usado e quando a mudança produz efeitos."],
+    ["Preciso continuar conferindo as fontes?", "Sim. Leis, programas e decisões podem mudar. Use as referências para verificar a data, o alcance e a situação atual."],
   ] as [string, string][],
   closing: {
     title: "Não caia em fake news sobre o governo e as mudanças no Brasil.",

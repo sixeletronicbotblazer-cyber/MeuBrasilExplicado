@@ -1,0 +1,88 @@
+Atualize a página de vendas existente do Brasil Explicado usando os arquivos do pacote Brasil-Explicado-Bonus-e-App.zip. Aplique as mudanças abaixo no código e apresente uma prévia ao terminar.
+
+1. PRESERVE A IDENTIDADE
+Mantenha a headline atual, a identidade verde/amarelo/azul/branco, o personagem com poses diferentes nos títulos, a imagem do grupo de amigos e familiares, o mockup de celular/tablet/cartilha, as bordas em gradiente verde e amarelo e o flipbook com páginas reais. Não refaça o site do zero. O preço continua R$ 22,90, em uma única oferta, pagamento único, sem assinatura.
+
+2. COPY MAIS DIRETA
+Troque as ocorrências públicas de “ebook” por “cartilha”, “guia visual” ou “material”, conforme a frase. Não renomeie rotas, arquivos ou variáveis apenas para isso. Use “Cartilha Brasil Explicado” para o produto principal. Não prometa imunidade a fake news, impossibilidade de mudanças, garantia de benefícios ou atualização automática do conteúdo.
+Preserve a headline: “Não caia em fake news sobre o governo e as mudanças no Brasil.”
+Subheadline: “Entenda quem decide, confira o que realmente mudou e ajude quem está ao seu redor. Aprenda com 24 flashcards visuais e consulte por assunto no aplicativo.”
+Linha curta de apoio: “Cartilha + 2 bônus + aplicativo de consulta.”
+Reduza parágrafos repetidos sobre boatos e mensagens. Remova o bloco independente que repete “Você também pode ajudar a conversa no grupo a sair do boato” se ele ainda existir; preserve sua ressalva sobre Congresso no FAQ. Mantenha a seção do grupo, com a imagem atual e uma frase curta: “Mais clareza para as conversas em família, na escola e entre amigos.” Não acrescente novas seções só para repetir benefícios.
+
+3. UM BLOCO COM TUDO O QUE A PESSOA RECEBE
+Transforme o bloco de entregáveis/benefícios extras existente em uma única seção próxima à oferta. Título: “Aprenda na cartilha. Confira com os bônus. Consulte no app.”
+Subtítulo: “Um kit para entender uma mensagem antes de acreditar ou compartilhar.”
+Quatro entregáveis, com títulos reais em HTML e descrições curtas:
+
+Cartilha Brasil Explicado
+“24 flashcards em 6 temas, checklist de consulta, exemplos práticos e referências para conferir as informações.”
+Use o mockup principal existente. Não fixe 40 páginas: aquele número era o planejamento inicial. Se citar páginas, confira o PDF final anexado.
+
+Bônus 1 — Quem Decide? Mapa Rápido dos Poderes
+“Um mapa visual de 2–3 páginas com as atribuições do presidente, Congresso, STF, governadores e prefeitos. Consulte quando surgir a dúvida: ‘Quem pode fazer isso?’”
+Imagem: assets/bonus-1-quem-decide.webp.
+Selo: “Bônus incluído”.
+
+Bônus 2 — Confira Antes de Compartilhar
+“Checklist de verificação, atalhos para fontes oficiais e perguntas para pedir a origem de uma informação.”
+Exemplo em uma linha: “Você tem o documento completo e a data dessa mudança?”
+Imagem: assets/bonus-2-confira.webp.
+Selo: “Bônus incluído”.
+
+App — Brasil Explicado
+“Os 24 cards organizados por assunto, com busca, favoritos e acesso às fontes. Aprenda pela cartilha e consulte pelo aplicativo.”
+Imagem: assets/app-brasil-explicado.webp.
+Selo: “Incluído no kit”.
+O mockup é ilustrativo: use legenda discreta “Representação ilustrativa do aplicativo”. Não o apresente como captura real nem crie links de lojas de aplicativos. A integração de acesso será configurada pelo proprietário.
+
+Desktop: quatro itens em uma grade equilibrada, com imagens de tamanho consistente e sem grandes áreas vazias. Mobile: linhas compactas com imagem à esquerda e texto à direita, empilhadas; abaixo de 360 px permita a imagem acima do texto se necessário. Use object-fit: contain; não corte títulos das capas. Os produtos são digitais; não prometa envio físico.
+
+4. OFERTA / ESCADA DE VALOR
+Substitua “Um ebook. A consulta inteira. Uma única oferta.” por “O kit completo. Uma única oferta.”
+Mostre a composição como valor de uso, sem preços fictícios riscados:
+“Para aprender: Cartilha Brasil Explicado.”
+“Para identificar quem decide: Mapa Rápido dos Poderes.”
+“Para verificar antes de compartilhar: kit de checagem.”
+“Para consultar por assunto: aplicativo Brasil Explicado.”
+Feche com “Tudo incluído por R$ 22,90” e “Pagamento único”.
+CTA: “Quero meu kit Brasil Explicado”.
+Não crie planos, upsells, soma de valores inventados, contagem regressiva, avaliações ou escassez. Não mencione bônus surpresa não definidos. Preserve o destino de checkout já configurado; se faltar, deixe uma variável clara CHECKOUT_URL, sem fingir que a compra funciona. Não desenvolva o app ou os materiais dos bônus nesta alteração: esta tarefa atualiza a página de venda e seus mockups.
+
+5. CARROSSEL DAS PÁGINAS / EXEMPLOS
+Na seção “Veja o método em situações do dia a dia”, transforme os cards existentes em uma faixa horizontal. Preserve as imagens das páginas e o desenho dos cards. Não altere o flipbook principal.
+Se for um carrossel contínuo, velocidade inicial de 18 px por segundo, configurável. Evite avançar uma página inteira em 1,8 segundo, pois os textos precisam de tempo para leitura. Mobile deve mostrar um card e um pequeno trecho do próximo. Desktop pode mostrar 2 ou 3. Não reduza a página ao ponto de perder a leitura; clicar abre a imagem ampliada em modal.
+Ofereça setas, arraste/swipe e um botão visível para pausar/retomar. Pause ao passar o mouse, ao focar com teclado, ao tocar/arrastar e enquanto o modal estiver aberto. Só anime enquanto a seção estiver visível. Respeite prefers-reduced-motion com reprodução automática desativada. Modal fecha com Escape, mantém foco e devolve foco ao card. Duplicações para loop devem ser aria-hidden, sem elementos focáveis duplicados. Sem salto visível ao reiniciar.
+
+6. MÉTODO EM LINHAS COMPACTAS
+Em “Uma dúvida. Um flashcard. Um caminho para conferir”, mantenha os quatro passos, convertendo os quadrados em linhas horizontais empilhadas. Número/ícone à esquerda, título e uma frase à direita. Efeito de cascata discreto apenas se não causar overflow no mobile; não sobreponha textos.
+Copy sugerida:
+“Reconheça a dúvida — Encontre a pergunta que apareceu na mensagem.”
+“Leia a resposta — Entenda o ponto principal e suas condições.”
+“Identifique quem decide — Veja quais instituições participam.”
+“Confira a fonte — Verifique documento, contexto, data e situação atual.”
+Não crie um segundo carrossel nesta seção.
+
+7. TEMAS MAIS COMPACTOS
+Em “Do poder de cada instituição à mudança que afeta o seu dia”, achate os cards mantendo ícones/personagem, bordas verde/amarelo e os seis assuntos. Duas colunas de linhas compactas no desktop; uma coluna no celular. Use um título e uma frase por item, sem altura fixa que corte texto:
+“Presidência — O que decide diretamente e o que depende de outras instituições.”
+“Congresso — Como propostas são analisadas e podem virar leis.”
+“STF — O alcance de decisões individuais e de julgamentos colegiados.”
+“Benefícios e serviços — Como conferir regras, mudanças e responsabilidades.”
+“Impostos e orçamento — Quem pode mudar cobranças e como acompanhar gastos.”
+“Da fala à mudança real — Diferencie declaração, proposta, norma e regra em vigor.”
+Prefira essas linhas ao carrossel para manter os seis temas visíveis e reduzir a quantidade de elementos em movimento.
+
+8. FAQ CURTO E COERENTE
+Use no máximo cinco perguntas em acordeão:
+“Preciso entender de política ou Direito?” — “Não. A cartilha usa perguntas reconhecíveis, respostas curtas e exemplos para orientar sua consulta.”
+“O que está incluído nos R$ 22,90?” — “A Cartilha Brasil Explicado, o Mapa Rápido dos Poderes, o kit Confira Antes de Compartilhar e o aplicativo com 24 cards por assunto. É uma única oferta, sem assinatura.”
+“O material defende um governo ou partido?” — “O foco é explicar competências, limites e procedimentos e indicar onde conferir uma informação.”
+“Isso significa que uma mudança ou o fim de um benefício é impossível?” — “Não. Depender do Congresso não torna uma mudança impossível. É preciso conferir a regra do programa, quem pode alterá-la, o instrumento usado e quando a mudança produz efeitos.”
+“Preciso continuar conferindo as fontes?” — “Sim. Leis, programas e decisões podem mudar. Use as referências para verificar a data, o alcance e a situação atual.”
+Remova a resposta antiga que dizia que o app não estava incluído. Não inclua comunidade no kit sem definição do proprietário. Não invente prazo de entrega, acesso vitalício ou garantia comercial. Preserve as informações operacionais já confirmadas no site em uma linha separada, se houver.
+
+9. ESPAÇAMENTO E VALIDAÇÃO
+Reduza respiros excessivos entre seções para cerca de 56–72 px no desktop e 32–44 px no mobile, ajustando ao conteúdo. Use 20–24 px de margem lateral no mobile e 16–24 px de padding interno nos cards. Preserve legibilidade, títulos grandes proporcionais e áreas de toque de 44 px. Remova containers vazios e repetição de listas de entregáveis.
+Mantenha texto em HTML, alt descritivo nas imagens e contraste adequado. Neon discreto, sem prejudicar leitura. Verifique em 360, 390, 768 e 1440 px: ausência de rolagem horizontal da página, imagens completas, botões sem corte, FAQ funcionando, carrossel pausável e modal acessível. Se um requisito depender de link ainda não fornecido, deixe o ponto de configuração explícito.
+Ao concluir, mostre a página atualizada e descreva brevemente o que mudou. Não declare o aplicativo funcional apenas porque seu mockup apareceu.
