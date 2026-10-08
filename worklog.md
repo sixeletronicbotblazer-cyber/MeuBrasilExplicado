@@ -48,3 +48,23 @@ Stage Summary:
 - Sticky footer (flex column body + margin-top:auto), responsive at 320/390/768/1440, reduced-motion respected, no autoplay, keyboard + swipe + button navigation, accessible modal.
 - price R$22,90 / "Pagamento único" preserved; checkoutUrl empty (button shows "vendas ainda não estão disponíveis" on click) per the original "don't publish until real checkout" rule.
 - Vibe-coded one faithful stand-in image (pagina-15) because the Drive package shipped it as 0 bytes; everything else uses the original assets unchanged.
+
+---
+Task ID: 10
+Agent: orchestrator
+Task: Add Meta Pixel, checkout link, scarcity timer, buyer notifications; publish to GitHub
+
+Work Log:
+- Added MetaPixel component (src/components/brasil/MetaPixel.tsx) using next/script (afterInteractive) with the standard fbevents.js bootstrap, fbq('init','900080772936894'), fbq('track','PageView') + <noscript> fallback. Rendered in layout.tsx body. Added fbEvent prop to CTA so the checkout button fires fbq('track','InitiateCheckout') on click.
+- Set comercial.checkoutUrl = https://go.perfectpay.com.br/PPU38CQGRGN (Perfect Pay) and added accessText/guaranteeText (acesso imediato + garantia 7 dias). The price-card CTA now links to checkout and fires InitiateCheckout.
+- Built ScarcityTimer (src/components/brasil/ScarcityTimer.tsx): 15-minute countdown persisted in localStorage (key be_offer_deadline_v1), resets only after 6h stale, ticks every second, shows "Oferta por tempo limitado" + MM:SS in a light yellow/green band placed right above #oferta, switches to "Últimos instantes" at 00:00. Respects reduced-motion.
+- Built BuyerNotifications (src/components/brasil/BuyerNotifications.tsx): 23 Brazilian buyer variations (first name, age, city/UF) weighted to SP, Nordeste and Centro-Oeste capitals + nearby cities. First toast after 9s, then each shows 6s with a 22-48s randomized gap, capped at one showing per buyer. Section-aware via IntersectionObserver on main > section (only after the initial 9s "ready" gate, respecting the cooldown) so toasts align with the reader pausing on each section. Fixed bottom-left (desktop) / bottom (mobile) card with slide-in animation, close button, and reduced-motion fallback.
+- Added CSS for .scarcity and .buyer-toast in brasil.css (responsive + reduced-motion overrides).
+- Wired <ScarcityTimer/> above the #oferta section and <BuyerNotifications/> at the page root in page.tsx.
+- Lint clean. Agent Browser verified: fbq loaded (pixel ID 900080772936894 init queued); price-card CTA href = checkout URL; timer counts down (14:43...) above the offer; first buyer toast appears at ~9s ("Helena, 26 — Brasília/DF · há 1 min — comprou o Brasil Explicado"), auto-hides at 6s, mobile toast displays correctly, cooldown blocks spam, console clean.
+- Published to GitHub: committed (5b4be48) and pushed to https://github.com/sixeletronicbotblazer-cyber/MeuBrasilExplicado.git (main branch). Used the provided token only for the push, then reset the remote URL to the token-free form so no credential lingers in .git/config. .env, node_modules, .next, dev.log excluded by .gitignore.
+
+Stage Summary:
+- Live page at / now has: Meta Pixel (PageView + InitiateCheckout on the checkout CTA), Perfect Pay checkout link on the price CTA, a 15-min scarcity countdown above the offer, and ~23 staggered buyer notifications tied to reading sections.
+- Repo published at https://github.com/sixeletronicbotblazer-cyber/MeuBrasilExplicado.git (branch main).
+- All verification done in-browser at desktop + mobile widths; no console errors.
